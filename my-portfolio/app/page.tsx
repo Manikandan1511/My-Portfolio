@@ -1,7 +1,7 @@
 // THIS LINE IS CRUCIAL AND MUST BE THE VERY FIRST LINE IN THE FILE
 "use client";
 
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Home,
   User,
@@ -26,10 +26,10 @@ import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Component for the main hero section of the portfolio
-// The forwardRef hook is used to pass a ref from the parent component
-const HeroSection = forwardRef(({ inView, scrollToSection }, ref) => {
+// This component now accepts the ref as a regular prop.
+const HeroSection = ({ inView, scrollToSection, heroRef }) => {
   return (
-    <section id="home" ref={ref} className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-4 md:px-0 bg-stone-950 text-stone-300">
+    <section id="home" ref={heroRef} className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-4 md:px-0 bg-stone-950 text-stone-300">
       {/* Background gradients for visual effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20"></div>
       <div className="absolute inset-0">
@@ -76,7 +76,7 @@ const HeroSection = forwardRef(({ inView, scrollToSection }, ref) => {
       </motion.div>
     </section>
   );
-});
+};
 
 // This is the main App component that renders the entire portfolio website.
 const App = () => {
@@ -257,7 +257,8 @@ const App = () => {
 
       <main className="container mx-auto">
         {/* Home Section - Now a separate component */}
-        <HeroSection inView={homeInView} ref={homeRef} scrollToSection={scrollToSection} />
+        {/* The ref is now passed as a prop named `heroRef` */}
+        <HeroSection inView={homeInView} heroRef={homeRef} scrollToSection={scrollToSection} />
 
         {/* About Section */}
         <section id="about" ref={aboutRef} className="py-20 md:py-32 relative px-4 md:px-0 bg-stone-950 text-stone-200">
