@@ -3,11 +3,15 @@
 
 import React, { useState, useEffect, forwardRef } from 'react';
 import {
+  Home,
+  User,
+  Folder,
   Mail,
   Download,
   Github,
   Linkedin,
   Twitter,
+  ExternalLink,
   Menu,
   X,
   Code,
@@ -44,7 +48,7 @@ const HeroSection = forwardRef(({ scrollToSection, inView }, ref) => {
             Hello, I&apos;m Manikandan S
           </span>
         </h1>
-        <h2 className="text-2xl md:text-4xl mb-8 text-stone-300">Full-Stack Developer | Freelancer</h2>
+        <h2 className="text-2xl md:text-4xl mb-8 text-stone-300">Full-Stack Developer | Engineer</h2>
         <p className="text-lg md:text-xl mb-12 text-stone-400 max-w-2xl mx-auto">
           A college student and versatile full-stack developer, I&apos;m passionate about AIML models and data science. I apply my strong understanding of deep learning algorithms to build innovative projects that transform complex data into intelligent applications.
         </p>
@@ -73,6 +77,9 @@ const HeroSection = forwardRef(({ scrollToSection, inView }, ref) => {
     </section>
   );
 });
+
+// Fix: Add a display name for the component wrapped in forwardRef
+HeroSection.displayName = 'HeroSection';
 
 // This is the main App component that renders the entire portfolio website.
 const App = () => {
@@ -209,7 +216,7 @@ const App = () => {
             transition={{ duration: 0.5 }}
             className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
-            Manikandan.
+            Portfolio
           </motion.div>
           
           {/* Desktop Navigation */}
@@ -463,6 +470,7 @@ const NavItem = ({ label, sectionId, activeSection, onClick, isMobile = false })
     </motion.button>
   );
 };
+NavItem.displayName = 'NavItem';
 
 // Component for a project card
 const ProjectCard = ({ inView, project, index }) => {
@@ -509,6 +517,7 @@ const ProjectCard = ({ inView, project, index }) => {
     </motion.div>
   );
 };
+ProjectCard.displayName = 'ProjectCard';
 
 // Component for a skill card
 const SkillCard = ({ skill, inView, index }) => {
@@ -536,6 +545,7 @@ const SkillCard = ({ skill, inView, index }) => {
     </motion.div>
   );
 };
+SkillCard.displayName = 'SkillCard';
 
 // Component for a section title with a separator
 const SectionTitle = ({ title, inView }) => (
@@ -553,6 +563,7 @@ const SectionTitle = ({ title, inView }) => (
     </div>
   </motion.div>
 );
+SectionTitle.displayName = 'SectionTitle';
 
 // Component for a social media link
 const SocialLink = ({ icon, href, colorClass }) => (
@@ -568,5 +579,6 @@ const SocialLink = ({ icon, href, colorClass }) => (
     {icon}
   </motion.a>
 );
+SocialLink.displayName = 'SocialLink';
 
 export default App;
