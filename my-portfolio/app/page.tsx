@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, ElementType } from 'react';
 import {
+  Home,
+  User,
+  Folder,
   Mail,
   Download,
   Github,
   Linkedin,
   Twitter,
+  ExternalLink,
   Menu,
   X,
   Code,
@@ -282,10 +286,10 @@ const App = () => {
               </p>
 
               <div className="flex space-x-6">
-                <SocialLink icon={<Github className="w-7 h-7" />} href="https://github.com/Manikandan1511" colorClass="hover:text-purple-400" />
-                <SocialLink icon={<Linkedin className="w-7 h-7" />} href="https://www.linkedin.com/in/mani-kandan-2aa6402a1/" colorClass="hover:text-blue-400" />
-                <SocialLink icon={<Twitter className="w-7 h-7" />} href="https://x.com/Manikandan52115" colorClass="hover:text-pink-400" />
-                <SocialLink icon={<Mail className="w-7 h-7" />} href="mailto:manikandanmk15112005@gmail.com" colorClass="hover:text-purple-400" />
+                <SocialLink icon={Github} href="https://github.com/Manikandan1511" colorClass="hover:text-purple-400" />
+                <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/mani-kandan-2aa6402a1/" colorClass="hover:text-blue-400" />
+                <SocialLink icon={Twitter} href="https://x.com/Manikandan52115" colorClass="hover:text-pink-400" />
+                <SocialLink icon={Mail} href="mailto:manikandanmk15112005@gmail.com" colorClass="hover:text-purple-400" />
               </div>
             </motion.div>
 
@@ -538,7 +542,7 @@ ProjectCard.displayName = 'ProjectCard';
 interface SkillCardProps {
   skill: {
     name: string;
-    icon: any;
+    icon: ElementType; // Correct type for the Lucide-React icon component
     level: number;
   };
   inView: boolean;
@@ -593,13 +597,13 @@ SectionTitle.displayName = 'SectionTitle';
 
 // Define a type for SocialLink props
 interface SocialLinkProps {
-  icon: React.ReactNode;
+  icon: ElementType;
   href: string;
   colorClass: string;
 }
 
 // Component for a social media link
-const SocialLink = ({ icon, href, colorClass }: SocialLinkProps) => (
+const SocialLink = ({ icon: Icon, href, colorClass }: SocialLinkProps) => (
   <motion.a
     href={href}
     target="_blank"
@@ -609,7 +613,7 @@ const SocialLink = ({ icon, href, colorClass }: SocialLinkProps) => (
     className={`text-stone-400 transition-colors duration-300 ${colorClass}`}
     aria-label="Social media link"
   >
-    {icon}
+    <Icon className="w-7 h-7" />
   </motion.a>
 );
 SocialLink.displayName = 'SocialLink';
