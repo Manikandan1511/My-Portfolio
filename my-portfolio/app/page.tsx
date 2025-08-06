@@ -1,4 +1,3 @@
-// THIS LINE IS CRUCIAL AND MUST BE THE VERY FIRST LINE IN THE FILE
 "use client";
 
 import React, { useState, useEffect, forwardRef } from 'react';
@@ -22,8 +21,14 @@ import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-// Corrected HeroSection to receive the inView state as a prop
-const HeroSection = forwardRef(({ scrollToSection, inView }, ref) => {
+// Define a type for the props of HeroSection
+interface HeroSectionProps {
+  scrollToSection: (sectionId: string) => void;
+  inView: boolean;
+}
+
+// Corrected HeroSection with proper prop typing for forwardRef
+const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollToSection, inView }, ref) => {
   return (
     <section id="home" ref={ref} className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-4 md:px-0 bg-stone-950 text-stone-300">
       {/* Background gradients for visual effect */}
@@ -171,7 +176,7 @@ const App = () => {
   }, []);
 
   // Function to handle smooth scrolling to a section
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -181,7 +186,7 @@ const App = () => {
   };
   
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Show a confirmation message instead of an alert
@@ -194,7 +199,7 @@ const App = () => {
   };
 
   // Handle form input changes
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -449,7 +454,7 @@ const App = () => {
 };
 
 // Component for a navigation item
-const NavItem = ({ label, sectionId, activeSection, onClick, isMobile = false }) => {
+const NavItem = ({ label, sectionId, activeSection, onClick, isMobile = false }: { label: string; sectionId: string; activeSection: string; onClick: (sectionId: string) => void; isMobile?: boolean }) => {
   const isActive = activeSection === sectionId;
   const baseClasses = "capitalize transition-colors duration-300";
   const desktopClasses = `font-medium ${isActive ? 'text-purple-400' : 'hover:text-purple-400'}`;
@@ -468,8 +473,22 @@ const NavItem = ({ label, sectionId, activeSection, onClick, isMobile = false })
 };
 NavItem.displayName = 'NavItem';
 
+// Define a type for ProjectCard props
+interface ProjectCardProps {
+  inView: boolean;
+  project: {
+    title: string;
+    description: string;
+    image: string;
+    liveLink: string;
+    githubLink: string;
+    tech: string[];
+  };
+  index: number;
+}
+
 // Component for a project card
-const ProjectCard = ({ inView, project, index }) => {
+const ProjectCard = ({ inView, project, index }: ProjectCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -515,8 +534,19 @@ const ProjectCard = ({ inView, project, index }) => {
 };
 ProjectCard.displayName = 'ProjectCard';
 
+// Define a type for SkillCard props
+interface SkillCardProps {
+  skill: {
+    name: string;
+    icon: any;
+    level: number;
+  };
+  inView: boolean;
+  index: number;
+}
+
 // Component for a skill card
-const SkillCard = ({ skill, inView, index }) => {
+const SkillCard = ({ skill, inView, index }: SkillCardProps) => {
   const Icon = skill.icon;
   return (
     <motion.div
@@ -544,7 +574,7 @@ const SkillCard = ({ skill, inView, index }) => {
 SkillCard.displayName = 'SkillCard';
 
 // Component for a section title with a separator
-const SectionTitle = ({ title, inView }) => (
+const SectionTitle = ({ title, inView }: { title: string; inView: boolean }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
@@ -561,8 +591,15 @@ const SectionTitle = ({ title, inView }) => (
 );
 SectionTitle.displayName = 'SectionTitle';
 
+// Define a type for SocialLink props
+interface SocialLinkProps {
+  icon: React.ReactNode;
+  href: string;
+  colorClass: string;
+}
+
 // Component for a social media link
-const SocialLink = ({ icon, href, colorClass }) => (
+const SocialLink = ({ icon, href, colorClass }: SocialLinkProps) => (
   <motion.a
     href={href}
     target="_blank"
