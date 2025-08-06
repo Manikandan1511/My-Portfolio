@@ -388,7 +388,7 @@ const App = () => {
                 </div>
                 <div>
                   <textarea
-                    rows="5"
+                    rows={5}
                     name="message"
                     placeholder="Your Message"
                     value={formData.message}
