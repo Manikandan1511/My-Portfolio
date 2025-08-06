@@ -1,11 +1,11 @@
 // THIS LINE IS CRUCIAL AND MUST BE THE VERY FIRST LINE IN THE FILE
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import {
   Home,
   User,
-  Folder, // Assuming Folder is intended for projects, or FolderGit
+  Folder,
   Mail,
   Download,
   Github,
@@ -24,12 +24,12 @@ import {
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
-// Component for the main hero section of the portfolio
-// This component now accepts the ref as a regular prop.
-const HeroSection = ({ inView, scrollToSection, heroRef }) => {
+// Corrected HeroSection to receive the inView state as a prop
+const HeroSection = forwardRef(({ scrollToSection, inView }, ref) => {
   return (
-    <section id="home" ref={heroRef} className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-4 md:px-0 bg-stone-950 text-stone-300">
+    <section id="home" ref={ref} className="min-h-screen flex flex-col justify-center items-center text-center relative overflow-hidden px-4 md:px-0 bg-stone-950 text-stone-300">
       {/* Background gradients for visual effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20"></div>
       <div className="absolute inset-0">
@@ -45,12 +45,12 @@ const HeroSection = ({ inView, scrollToSection, heroRef }) => {
       >
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-            Hello, I'm Manikandan S
+            Hello, I&apos;m Manikandan S
           </span>
         </h1>
-        <h2 className="text-2xl md:text-4xl mb-8 text-stone-300">Full-Stack Developer | Engineer</h2>
+        <h2 className="text-2xl md:text-4xl mb-8 text-stone-300">Full-Stack Developer | Freelancer</h2>
         <p className="text-lg md:text-xl mb-12 text-stone-400 max-w-2xl mx-auto">
-          A college student and versatile full-stack developer, I'm passionate about AIML models and data science. I apply my strong understanding of deep learning algorithms to build innovative projects that transform complex data into intelligent applications.
+          A college student and versatile full-stack developer, I&apos;m passionate about AIML models and data science. I apply my strong understanding of deep learning algorithms to build innovative projects that transform complex data into intelligent applications.
         </p>
         {/* Call-to-action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -76,7 +76,7 @@ const HeroSection = ({ inView, scrollToSection, heroRef }) => {
       </motion.div>
     </section>
   );
-};
+});
 
 // This is the main App component that renders the entire portfolio website.
 const App = () => {
@@ -213,7 +213,7 @@ const App = () => {
             transition={{ duration: 0.5 }}
             className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
-            Portfolio
+            Manikandan.
           </motion.div>
           
           {/* Desktop Navigation */}
@@ -257,8 +257,8 @@ const App = () => {
 
       <main className="container mx-auto">
         {/* Home Section - Now a separate component */}
-        {/* The ref is now passed as a prop named `heroRef` */}
-        <HeroSection inView={homeInView} heroRef={homeRef} scrollToSection={scrollToSection} />
+        {/* Pass the homeInView state to the HeroSection component */}
+        <HeroSection ref={homeRef} scrollToSection={scrollToSection} inView={homeInView} />
 
         {/* About Section */}
         <section id="about" ref={aboutRef} className="py-20 md:py-32 relative px-4 md:px-0 bg-stone-950 text-stone-200">
@@ -271,10 +271,10 @@ const App = () => {
               transition={{ duration: 0.8 }}
             >
               <p className="text-lg text-stone-300 mb-6 leading-relaxed">
-                A college student and versatile full-stack developer, I'm passionate about AIML models and data science. I apply my strong understanding of deep learning algorithms to build innovative projects that transform complex data into intelligent applications.
+                A college student and versatile full-stack developer, I&apos;m passionate about AIML models and data science. I apply my strong understanding of deep learning algorithms to build innovative projects that transform complex data into intelligent applications.
               </p>
               <p className="text-lg text-stone-300 mb-8 leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.
+                When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.
               </p>
 
               <div className="flex space-x-6">
@@ -293,9 +293,11 @@ const App = () => {
             >
               <div className="w-80 h-80 mx-auto relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                <img
+                <Image
                   src="https://placehold.co/320x320/9333ea/FFFFFF?text=Manikandan+S"
                   alt="Profile"
+                  width={320}
+                  height={320}
                   className="relative z-10 w-full h-full object-cover rounded-full border-4 border-purple-400/30"
                 />
               </div>
@@ -336,9 +338,9 @@ const App = () => {
             className="relative z-10 max-w-4xl mx-auto grid md:grid-cols-2 gap-12"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-white">Let's Work Together</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Let&apos;s Work Together</h3>
               <p className="text-stone-300 mb-8 leading-relaxed">
-                I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                I&apos;m always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
               </p>
               <div className="space-y-4">
                 <div className="flex items-center">
@@ -476,7 +478,13 @@ const ProjectCard = ({ inView, project, index }) => {
       className="bg-stone-800/50 border border-stone-700 rounded-3xl overflow-hidden shadow-xl hover:border-purple-400/50 transition-all duration-300 transform hover:-translate-y-2"
     >
       <div className="relative overflow-hidden">
-        <img src={project.image} alt={project.title} className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110" />
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={600}
+          height={400}
+          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 to-transparent"></div>
       </div>
       <div className="p-6">
