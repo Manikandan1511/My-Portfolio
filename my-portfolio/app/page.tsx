@@ -2,15 +2,11 @@
 
 import React, { useState, useEffect, forwardRef, ElementType } from 'react';
 import {
-  Home,
-  User,
-  Folder,
   Mail,
   Download,
   Github,
   Linkedin,
   Twitter,
-  ExternalLink,
   Menu,
   X,
   Code,
