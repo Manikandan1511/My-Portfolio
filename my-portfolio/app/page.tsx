@@ -99,7 +99,7 @@ const App = () => {
   // State for showing a confirmation message after form submission
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // Define your project data
+  // Define project data
   const projects = [
     {
       title: "Meeting AI",
