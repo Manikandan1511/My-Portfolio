@@ -66,7 +66,7 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollToSect
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://drive.google.com/file/d/1zlChx5vtRXgMipdeZEEaQK03BLe37lLH/view"
+            href="https://drive.google.com/file/d/1cEBnQ_k7r_0M_v00PnyJXebx_VFCu3m_/view?usp=sharing"
             download="Manikandan-resume.pdf"
             className="flex items-center space-x-2 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-full transition-all duration-300"
           >
