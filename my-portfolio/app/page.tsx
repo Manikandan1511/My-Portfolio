@@ -66,7 +66,7 @@ const HeroSection = forwardRef<HTMLDivElement, HeroSectionProps>(({ scrollToSect
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://drive.google.com/file/d/1_ktjWhK-9zAYVxLwsxPgXowQzwi5rbBG/view?usp=sharing"
+            href="https://drive.google.com/file/d/1LIh1YuKNPVO18ZRoy2kAzdsBdNQL1tQw/view?usp=sharing"
             download="Manikandan-resume.pdf"
             className="flex items-center space-x-2 border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-full transition-all duration-300"
           >
@@ -110,9 +110,9 @@ const App = () => {
       tech: ["Next.js", "Google Gemini API", "AssemblyAI API", "FastAPI", "Python"],
     },
     {
-      title: "PolicyBot",
+      title: "Internal Docs Q&A Agent",
       description: "An AI-powered Q&A agent that answers questions by searching and retrieving information from your uploaded internal documents.",
-      image: "https://placehold.co/600x400/818CF8/FFFFFF?text=PolicyBot",
+      image: "https://placehold.co/600x400/818CF8/FFFFFF?text=internal-docs-qa-agent",
       liveLink: "https://internal-docs-qa-agent-eight.vercel.app/",
       githubLink: "https://github.com/Manikandan1511/internal-docs-qa-agent",
       tech: ["React.js", "Python", "ChromaDB", "HuggingFace", "LangChain"],
