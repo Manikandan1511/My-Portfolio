@@ -112,7 +112,7 @@ const App = () => {
     {
       title: "Internal Docs Q&A Agent",
       description: "An AI-powered Q&A agent that answers questions by searching and retrieving information from your uploaded internal documents.",
-      image: "https://placehold.co/600x400/818CF8/FFFFFF?text=internal-docs-qa-agent",
+      image: "https://placehold.co/600x400/818CF8/FFFFFF?text=Internal+Docs+Q&A+Agent",
       liveLink: "https://internal-docs-qa-agent-eight.vercel.app/",
       githubLink: "https://github.com/Manikandan1511/internal-docs-qa-agent",
       tech: ["React.js", "Python", "ChromaDB", "HuggingFace", "LangChain"],
